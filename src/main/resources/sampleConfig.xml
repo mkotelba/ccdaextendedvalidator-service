@@ -1,0 +1,8 @@
+<configuration>
+	<expression xpathExpression="ClinicalDocument/documentationOf/serviceEvent/code">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaCodeValidator" />
+		<validator className="org.sitenv.xml.validators.ccda.CcdaCodeValidator" />
+		<validator className="org.sitenv.xml.validators.ccda.CcdaCodeValidator" />
+		<validator className="org.sitenv.xml.validators.ccda.CcdaCodeValidator" />
+	</expression>
+</configuration>

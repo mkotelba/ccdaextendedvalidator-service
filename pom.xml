@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 
 	<groupId>org.sitenv.services</groupId>
 	<version>1.0-SNAPSHOT</version>
@@ -12,6 +12,10 @@
 
 	<name>CCDA Extended Validator Service</name>
 	<url>http://sitenv.org</url>
+
+	<properties>
+		<org.springframework.version>4.1.0.RELEASE</org.springframework.version>
+	</properties>
 
 	<build>
 		<finalName>CCDAExtendedValidatorService</finalName>
@@ -64,12 +68,15 @@
 										<echo
 											message="Copying file (${project.build.directory}/CCDAExtendedValidatorService.war) to location: ${liferay.auto.deploy.dir}" />
 										<exec executable="cp">
-											<arg value="${project.build.directory}/CCDAExtendedValidatorService.war" />
-											<arg value="${liferay.auto.deploy.dir}/CCDAExtendedValidatorService.war" />
+											<arg
+												value="${project.build.directory}/CCDAExtendedValidatorService.war" />
+											<arg
+												value="${liferay.auto.deploy.dir}/CCDAExtendedValidatorService.war" />
 										</exec>
 										<echo message="Uploading file to location: ${deploy.location}" />
 										<exec executable="scp">
-											<arg value="${liferay.auto.deploy.dir}/CCDAExtendedValidatorService.war" />
+											<arg
+												value="${liferay.auto.deploy.dir}/CCDAExtendedValidatorService.war" />
 											<arg value="${deploy.location}" />
 										</exec>
 										<echo message="...Uploaded." />
@@ -87,12 +94,15 @@
 											<echo
 												message="Copying file (${project.build.directory}/CCDAExtendedValidatorService.war) to location: ${liferay.auto.deploy.dir}" />
 											<exec executable="cp">
-												<arg value="${project.build.directory}/CCDAExtendedValidatorService.war" />
-												<arg value="${liferay.auto.deploy.dir}/CCDAExtendedValidatorService.war" />
+												<arg
+													value="${project.build.directory}/CCDAExtendedValidatorService.war" />
+												<arg
+													value="${liferay.auto.deploy.dir}/CCDAExtendedValidatorService.war" />
 											</exec>
 											<echo message="Uploading file to location: ${deploy.location}" />
 											<exec executable="scp">
-												<arg value="${liferay.auto.deploy.dir}/CCDAExtendedValidatorService.war" />
+												<arg
+													value="${liferay.auto.deploy.dir}/CCDAExtendedValidatorService.war" />
 												<arg value="${deploy.location}" />
 											</exec>
 											<echo message="...Uploaded." />
@@ -108,7 +118,8 @@
 									<else>
 
 										<echo message="Uploading file to location: ${deploy.location}" />
-										<copy file="target/CCDAExtendedValidatorService.war" todir="${deploy.location}" />
+										<copy file="target/CCDAExtendedValidatorService.war"
+											todir="${deploy.location}" />
 										<echo message="...Uploaded." />
 
 									</else>
@@ -182,6 +193,33 @@
 			<artifactId>codevalidator-api</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>org.sitenv.xml</groupId>
+			<artifactId>xpathvalidator</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>apache-log4j-extras</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.sitenv.xml.validators</groupId>
+			<artifactId>ccdaxpathvalidators</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+
 	</dependencies>
 
 </project>
