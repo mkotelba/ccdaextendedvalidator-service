@@ -9,6 +9,9 @@ import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.sitenv.service.ccda.extendedvalidator.views.CcdaValidatorResponseJsonView;
+import org.sitenv.service.ccda.extendedvalidator.views.CcdaValidatorResultJsonView;
+import org.sitenv.xml.validators.ccda.CcdaValidatorResult;
 import org.sitenv.xml.xpathvalidator.engine.XPathValidationEngine;
 import org.sitenv.xml.xpathvalidator.engine.data.XPathValidatorResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +27,7 @@ public class CcdaExtendedValidatorService {
 	
 	private static final Logger logger = Logger.getLogger(CcdaExtendedValidatorService.class);
 	private static final String DEFAULT_PROPERTIES_FILE = "environment.properties";
+	private static XPathValidationEngine engine = null;
 	
 	protected Properties props;
 	
@@ -42,17 +46,23 @@ public class CcdaExtendedValidatorService {
 		}
 	}
 	
-	@RequestMapping(value="/validateXML", method= RequestMethod.POST, produces="application/json; charset=utf-8")
-	@ResponseBody
-	public String validateXML(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) throws IOException {
+	@RequestMapping(value="/validateXML", method= RequestMethod.POST)
+	public @ResponseBody CcdaValidatorResponseJsonView validateXML(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) throws IOException {
 		
 		if (props == null)
 		{
 			this.loadProperties();
 		}
 		
-		XPathValidationEngine engine = new XPathValidationEngine();
-		engine.initialize("/Users/chris/Development/git/ccdaextendedvalidator-service/src/main/resources/sampleConfig.xml");
+		CcdaValidatorResponseJsonView responseView = new CcdaValidatorResponseJsonView();
+		
+		if (engine == null) {
+			engine = new XPathValidationEngine();
+
+			engine.initialize(props.getProperty("ccdaextended.configFile"));
+			
+			logger.info("Ccda Extended Validation Engine loaded for : " + props.getProperty("ccdaextended.configFile"));
+		}
 		
 		try 
 		{
@@ -60,10 +70,65 @@ public class CcdaExtendedValidatorService {
 				List<XPathValidatorResult> results = engine.validate(multipartFile.getInputStream());
 				
 				for (XPathValidatorResult result : results) 
-				{
-				
-					if (result.isHasError()) {
-						return "false";
+				{	
+					if (result.hasError()) {
+						responseView.setErrors(true);
+						
+						CcdaValidatorResultJsonView toAdd = new CcdaValidatorResultJsonView();
+						
+						toAdd.setMessage(result.getErrorMessage());
+						toAdd.setXpathExpression(result.getXpathExpression());
+						toAdd.setNodeIndex(result.getNodeIndex());
+						if (result instanceof CcdaValidatorResult)
+						{
+							CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
+							toAdd.setCode(convertedResult.getCode());
+							toAdd.setCodeSystem(convertedResult.getCodeSystem());
+							toAdd.setCodeSystemName(convertedResult.getCodeSystemName());
+							toAdd.setDisplayName(convertedResult.getDisplayName());
+						}
+						
+						responseView.getErrorList().add(toAdd);
+					}
+					if (result.hasWarning()) {
+						responseView.setWarnings(true);
+						
+						CcdaValidatorResultJsonView toAdd = new CcdaValidatorResultJsonView();
+						
+						toAdd.setMessage(result.getWarningMessage());
+						toAdd.setXpathExpression(result.getXpathExpression());
+						toAdd.setNodeIndex(result.getNodeIndex());
+						if (result instanceof CcdaValidatorResult)
+						{
+							CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
+							toAdd.setCode(convertedResult.getCode());
+							toAdd.setCodeSystem(convertedResult.getCodeSystem());
+							toAdd.setCodeSystemName(convertedResult.getCodeSystemName());
+							toAdd.setDisplayName(convertedResult.getDisplayName());
+						}
+						
+						responseView.getWarningList().add(toAdd);
+						
+					}
+					
+					if (result.hasInformation()) {
+						responseView.setInformation(true);
+						
+						CcdaValidatorResultJsonView toAdd = new CcdaValidatorResultJsonView();
+						
+						toAdd.setMessage(result.getInfoMessage());
+						toAdd.setXpathExpression(result.getXpathExpression());
+						toAdd.setNodeIndex(result.getNodeIndex());
+						if (result instanceof CcdaValidatorResult)
+						{
+							CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
+							toAdd.setCode(convertedResult.getCode());
+							toAdd.setCodeSystem(convertedResult.getCodeSystem());
+							toAdd.setCodeSystemName(convertedResult.getCodeSystemName());
+							toAdd.setDisplayName(convertedResult.getDisplayName());
+						}
+						
+						responseView.getInformationList().add(toAdd);
 					}
 					
 				}
@@ -79,7 +144,7 @@ public class CcdaExtendedValidatorService {
 		}
 		
 		
-		return "true";
+		return responseView;
 		
 	}
 	
