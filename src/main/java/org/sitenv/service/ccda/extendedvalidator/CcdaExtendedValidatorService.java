@@ -69,68 +69,73 @@ public class CcdaExtendedValidatorService {
 			if (multipartFile != null) {
 				List<XPathValidatorResult> results = engine.validate(multipartFile.getInputStream());
 				
-				for (XPathValidatorResult result : results) 
-				{	
-					if (result.hasError()) {
-						responseView.setErrors(true);
-						
-						CcdaValidatorResultJsonView toAdd = new CcdaValidatorResultJsonView();
-						
-						toAdd.setMessage(result.getErrorMessage());
-						toAdd.setXpathExpression(result.getXpathExpression());
-						toAdd.setNodeIndex(result.getNodeIndex());
-						if (result instanceof CcdaValidatorResult)
+				if (results != null) {
+				
+					for (XPathValidatorResult result : results) 
+					{	
+						if (result != null)
 						{
-							CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
-							toAdd.setCode(convertedResult.getCode());
-							toAdd.setCodeSystem(convertedResult.getCodeSystem());
-							toAdd.setCodeSystemName(convertedResult.getCodeSystemName());
-							toAdd.setDisplayName(convertedResult.getDisplayName());
+							if (result.hasError()) {
+								responseView.setErrors(true);
+								
+								CcdaValidatorResultJsonView toAdd = new CcdaValidatorResultJsonView();
+								
+								toAdd.setMessage(result.getErrorMessage());
+								toAdd.setXpathExpression(result.getXpathExpression());
+								toAdd.setNodeIndex(result.getNodeIndex());
+								if (result instanceof CcdaValidatorResult)
+								{
+									CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
+									toAdd.setCode(convertedResult.getCode());
+									toAdd.setCodeSystem(convertedResult.getCodeSystem());
+									toAdd.setCodeSystemName(convertedResult.getCodeSystemName());
+									toAdd.setDisplayName(convertedResult.getDisplayName());
+								}
+								
+								responseView.getErrorList().add(toAdd);
+							}
+							if (result.hasWarning()) {
+								responseView.setWarnings(true);
+								
+								CcdaValidatorResultJsonView toAdd = new CcdaValidatorResultJsonView();
+								
+								toAdd.setMessage(result.getWarningMessage());
+								toAdd.setXpathExpression(result.getXpathExpression());
+								toAdd.setNodeIndex(result.getNodeIndex());
+								if (result instanceof CcdaValidatorResult)
+								{
+									CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
+									toAdd.setCode(convertedResult.getCode());
+									toAdd.setCodeSystem(convertedResult.getCodeSystem());
+									toAdd.setCodeSystemName(convertedResult.getCodeSystemName());
+									toAdd.setDisplayName(convertedResult.getDisplayName());
+								}
+								
+								responseView.getWarningList().add(toAdd);
+								
+							}
+							
+							if (result.hasInformation()) {
+								responseView.setInformation(true);
+								
+								CcdaValidatorResultJsonView toAdd = new CcdaValidatorResultJsonView();
+								
+								toAdd.setMessage(result.getInfoMessage());
+								toAdd.setXpathExpression(result.getXpathExpression());
+								toAdd.setNodeIndex(result.getNodeIndex());
+								if (result instanceof CcdaValidatorResult)
+								{
+									CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
+									toAdd.setCode(convertedResult.getCode());
+									toAdd.setCodeSystem(convertedResult.getCodeSystem());
+									toAdd.setCodeSystemName(convertedResult.getCodeSystemName());
+									toAdd.setDisplayName(convertedResult.getDisplayName());
+								}
+								
+								responseView.getInformationList().add(toAdd);
+							}
 						}
-						
-						responseView.getErrorList().add(toAdd);
 					}
-					if (result.hasWarning()) {
-						responseView.setWarnings(true);
-						
-						CcdaValidatorResultJsonView toAdd = new CcdaValidatorResultJsonView();
-						
-						toAdd.setMessage(result.getWarningMessage());
-						toAdd.setXpathExpression(result.getXpathExpression());
-						toAdd.setNodeIndex(result.getNodeIndex());
-						if (result instanceof CcdaValidatorResult)
-						{
-							CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
-							toAdd.setCode(convertedResult.getCode());
-							toAdd.setCodeSystem(convertedResult.getCodeSystem());
-							toAdd.setCodeSystemName(convertedResult.getCodeSystemName());
-							toAdd.setDisplayName(convertedResult.getDisplayName());
-						}
-						
-						responseView.getWarningList().add(toAdd);
-						
-					}
-					
-					if (result.hasInformation()) {
-						responseView.setInformation(true);
-						
-						CcdaValidatorResultJsonView toAdd = new CcdaValidatorResultJsonView();
-						
-						toAdd.setMessage(result.getInfoMessage());
-						toAdd.setXpathExpression(result.getXpathExpression());
-						toAdd.setNodeIndex(result.getNodeIndex());
-						if (result instanceof CcdaValidatorResult)
-						{
-							CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
-							toAdd.setCode(convertedResult.getCode());
-							toAdd.setCodeSystem(convertedResult.getCodeSystem());
-							toAdd.setCodeSystemName(convertedResult.getCodeSystemName());
-							toAdd.setDisplayName(convertedResult.getDisplayName());
-						}
-						
-						responseView.getInformationList().add(toAdd);
-					}
-					
 				}
 			}
 		} 
