@@ -74,14 +74,14 @@ The primary use case of this system includes validating codes of a C-CDA file ag
 "codeSystemName":	&lt;string&gt;	/* the name of the code system of the node that produced the message */
 "code":			&lt;string&gt;	/* the code of the node that produced the message */
 "displayName":		&lt;string&gt;	/* the display name of the node that produced the message */
-"nodeIndex":		&lt;string&gt;	/* the index of the node found during validation of of the xpath expression evaluation of the xml document */
+"nodeIndex":		&lt;integer&gt;	/* the index of the node found during validation of of the xpath expression evaluation of the xml document */
 }</pre>
   					
   			</p>
   			
   			<h2>Example Usage</h2>
   			<p>
-  				curl -D- -X POST -F "file=@CCDA_CCD_b1_InPatient.xml" <%= rootContext %>/CCDAExtendedValidatorService/validateXML/
+  				curl -D- -X POST -F "file=@CCDA_CCD_b1_InPatient.xml" <%= rootContext %>/validateXML/
   			</p>		
 		</div>
 	</div>
