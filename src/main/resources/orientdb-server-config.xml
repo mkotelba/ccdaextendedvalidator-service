@@ -9,7 +9,7 @@
         </handler>
         <handler class="com.orientechnologies.orient.server.plugin.mail.OMailPlugin">
             <parameters>
-                <parameter value="true" name="enabled"/>
+                <parameter value="false" name="enabled"/>
                 <parameter value="localhost" name="profile.default.mail.smtp.host"/>
                 <parameter value="25" name="profile.default.mail.smtp.port"/>
                 <parameter value="true" name="profile.default.mail.smtp.auth"/>
