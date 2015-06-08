@@ -1,4 +1,4 @@
-package org.sitenv.service.ccda.extendedvalidator;
+package org.sitenv.service.ccda.extendedvalidator.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,8 +9,8 @@ import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.sitenv.service.ccda.extendedvalidator.views.CcdaValidatorResponseJsonView;
-import org.sitenv.service.ccda.extendedvalidator.views.CcdaValidatorResultJsonView;
+import org.sitenv.service.ccda.extendedvalidator.view.CcdaValidatorResponseJsonView;
+import org.sitenv.service.ccda.extendedvalidator.view.CcdaValidatorResultJsonView;
 import org.sitenv.xml.validators.ccda.CcdaValidatorResult;
 import org.sitenv.xml.xpathvalidator.engine.XPathValidationEngine;
 import org.sitenv.xml.xpathvalidator.engine.data.XPathValidatorResult;
@@ -23,9 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
 
 @RestController
-public class CcdaExtendedValidatorService {
+public class CcdaExtendedValidatorController {
 	
-	private static final Logger logger = Logger.getLogger(CcdaExtendedValidatorService.class);
+	private static final Logger logger = Logger.getLogger(CcdaExtendedValidatorController.class);
 	private static final String DEFAULT_PROPERTIES_FILE = "environment.properties";
 	private static XPathValidationEngine engine = null;
 	
