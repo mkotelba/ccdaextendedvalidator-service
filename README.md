@@ -105,6 +105,7 @@ Code Value Set Repository
       
 Xpath Validator API Configuration:
 	The SITE XPath Validation API requires configuration in order to properly associate Validators with XPath Expressions.  A sample configuration is included with this project and its location must be configured in the "environment.properties" file.  The sample configuration should be in the following XML format:
+		
 		<configuration>
 			<expression xpathExpression="//section/templateId[@root='2.16.840.1.113883.10.20.22.2.22.1']/ancestor::section[1]/code">
 				<validator className="org.sitenv.xml.validators.ccda.structuredbody.coderequirements.MustBeValidator">
