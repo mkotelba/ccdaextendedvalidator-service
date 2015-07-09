@@ -19,6 +19,8 @@
 <!-- Latest compiled and minified JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+<script src="resources/js/parsley.js"></script>
 
 <title>Vocabulary Validation Service Testing UI</title>
 </head>
@@ -31,7 +33,7 @@
 		<div class="panel-body">
 
 			<form class="form-horizontal" action="#" id="validationform"
-				method="get">
+				method="get" data-parsley-validate>
 				<div class="form-group">
 					<label for="validationSelection" class="col-sm-2 control-label">Validator</label>
 					<div class="col-sm-10">
@@ -49,14 +51,14 @@
 					<label for="code" class="col-sm-2 control-label">Code</label>
 					<div class="col-sm-10">
 						<input class="form-control" id="code" name="code"
-							placeholder="code">
+							placeholder="code" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="vocabulary" class="col-sm-2 control-label">Vocabulary</label>
 					<div class="col-sm-10">
 						<input class="form-control" id="vocabulary" name="vocabulary"
-							placeholder="Vocabulary">
+							placeholder="Vocabulary" required>
 					</div>
 				</div>
 				<div class="form-group">
@@ -73,7 +75,7 @@
 </div>
 </body>
 <script type="text/javascript">
-	$('#validateButton').click(
+	$('#validationform').submit(
 			function(ev) {
 				$('#validationResult').removeClass(),
 				$('#validationResult').text('VALIDATING'),
@@ -93,9 +95,9 @@
 							$('#validationResult').text('NOT VALID');
 						}	
 					},
-					error : function(data) {
-						$('#validationResult').hide();
-						alert('Form inputs are invalid or there was an error communicating with the service!');
+					error : function(request, status, error) {
+						$('#validationResult').addClass('alert alert-warning text-center');
+						$('#validationResult').text('ERROR COMMUNICATING WITH THE SERVER');
 					}
 				});
 
