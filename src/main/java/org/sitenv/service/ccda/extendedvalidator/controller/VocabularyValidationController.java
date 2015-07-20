@@ -47,6 +47,18 @@ public class VocabularyValidationController {
 		return "result: " + ValidationEngine.validateDisplayNameByCodeSystemName(vocabulary, displayName);
 	}
 	
+	@RequestMapping(value="/validateValueSetCode/{valueSet}/{code}", method= RequestMethod.GET, produces="application/json; charset=utf-8")
+	public String validateValueSetCode(@PathVariable String valueSet, @PathVariable String code) {
+		
+		return "result: " + ValidationEngine.validateValueSetCode(valueSet, code);
+	}
+	
+	@RequestMapping(value="/validateValueSetCodeForCodeSystem/{valueSet}/{codeSystem}/{code}", method= RequestMethod.GET, produces="application/json; charset=utf-8")
+	public String validateValueSetCodeForCodeSystem(@PathVariable String valueSet, @PathVariable String codeSystem, @PathVariable String code) {
+		
+		return "result: " + ValidationEngine.validateValueSetCodeForCodeSystem(valueSet, code, codeSystem);
+	}
+	
 	@RequestMapping(value="/validateVocabularyList", method= RequestMethod.POST, produces="application/json; charset=utf-8")
 	public @ResponseBody List<VocabularyValidationResultJsonView> validateVocabularyList(@RequestBody List<VocabularyValidationRequestJsonView> list, HttpServletRequest request, HttpServletResponse response) throws IOException {
 	
