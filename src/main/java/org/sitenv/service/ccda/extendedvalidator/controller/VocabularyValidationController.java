@@ -64,7 +64,6 @@ public class VocabularyValidationController {
 	
 		List<VocabularyValidationResultJsonView> results = new ArrayList<VocabularyValidationResultJsonView>();
 		
-		
 		try
 		{
 	
