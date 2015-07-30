@@ -86,10 +86,11 @@ public class CcdaExtendedValidatorController {
 								if (result instanceof CcdaValidatorResult)
 								{
 									CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
-									toAdd.setCode(convertedResult.getCode());
-									toAdd.setCodeSystem(convertedResult.getCodeSystem());
-									toAdd.setCodeSystemName(convertedResult.getCodeSystemName());
-									toAdd.setDisplayName(convertedResult.getDisplayName());
+									toAdd.setCode(convertedResult.getRequestedCode());
+									toAdd.setCodeSystem(convertedResult.getRequestedCodeSystem());
+									toAdd.setCodeSystemName(convertedResult.getRequestedCodeSystemName());
+									toAdd.setDisplayName(convertedResult.getRequestedDisplayName());
+									toAdd.setExpectedValues(convertedResult.getExpectedValues());
 								}
 								
 								responseView.getErrorList().add(toAdd);
@@ -105,10 +106,11 @@ public class CcdaExtendedValidatorController {
 								if (result instanceof CcdaValidatorResult)
 								{
 									CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
-									toAdd.setCode(convertedResult.getCode());
-									toAdd.setCodeSystem(convertedResult.getCodeSystem());
-									toAdd.setCodeSystemName(convertedResult.getCodeSystemName());
-									toAdd.setDisplayName(convertedResult.getDisplayName());
+									toAdd.setCode(convertedResult.getRequestedCode());
+									toAdd.setCodeSystem(convertedResult.getRequestedCodeSystem());
+									toAdd.setCodeSystemName(convertedResult.getRequestedCodeSystemName());
+									toAdd.setDisplayName(convertedResult.getRequestedDisplayName());
+									toAdd.setExpectedValues(convertedResult.getExpectedValues());
 								}
 								
 								responseView.getWarningList().add(toAdd);
@@ -126,10 +128,11 @@ public class CcdaExtendedValidatorController {
 								if (result instanceof CcdaValidatorResult)
 								{
 									CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
-									toAdd.setCode(convertedResult.getCode());
-									toAdd.setCodeSystem(convertedResult.getCodeSystem());
-									toAdd.setCodeSystemName(convertedResult.getCodeSystemName());
-									toAdd.setDisplayName(convertedResult.getDisplayName());
+									toAdd.setCode(convertedResult.getRequestedCode());
+									toAdd.setCodeSystem(convertedResult.getRequestedCodeSystem());
+									toAdd.setCodeSystemName(convertedResult.getRequestedCodeSystemName());
+									toAdd.setDisplayName(convertedResult.getRequestedDisplayName());
+									toAdd.setExpectedValues(convertedResult.getExpectedValues());
 								}
 								
 								responseView.getInformationList().add(toAdd);

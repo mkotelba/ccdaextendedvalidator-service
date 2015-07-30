@@ -1,5 +1,7 @@
 package org.sitenv.service.ccda.extendedvalidator.view;
 
+import java.util.Set;
+
 public class CcdaValidatorResultJsonView {
 
 	private String message;
@@ -9,9 +11,7 @@ public class CcdaValidatorResultJsonView {
 	private String codeSystemName;
 	private String displayName;
 	private Integer nodeIndex;
-	
-	
-	
+	private Set<String> expectedValues;
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -23,6 +23,8 @@ public class CcdaValidatorResultJsonView {
 				+ ((codeSystemName == null) ? 0 : codeSystemName.hashCode());
 		result = prime * result
 				+ ((displayName == null) ? 0 : displayName.hashCode());
+		result = prime * result
+				+ ((expectedValues == null) ? 0 : expectedValues.hashCode());
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result
 				+ ((nodeIndex == null) ? 0 : nodeIndex.hashCode());
@@ -58,6 +60,11 @@ public class CcdaValidatorResultJsonView {
 			if (other.displayName != null)
 				return false;
 		} else if (!displayName.equals(other.displayName))
+			return false;
+		if (expectedValues == null) {
+			if (other.expectedValues != null)
+				return false;
+		} else if (!expectedValues.equals(other.expectedValues))
 			return false;
 		if (message == null) {
 			if (other.message != null)
@@ -118,6 +125,16 @@ public class CcdaValidatorResultJsonView {
 	public void setNodeIndex(Integer nodeIndex) {
 		this.nodeIndex = nodeIndex;
 	}
+	public Set<String> getExpectedValues() {
+		return expectedValues;
+	}
+	public void setExpectedValues(Set<String> expectedValues) {
+		this.expectedValues = expectedValues;
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -67,5 +67,6 @@
     <properties>
         <entry value="info" name="log.console.level"/>
         <entry value="fine" name="log.file.level"/>
+        <entry value="false" name="tx.useLog"/>
     </properties>
 </orient-server>
