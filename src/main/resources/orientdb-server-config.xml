@@ -57,8 +57,8 @@
         </listeners>
     </network>
     <storages>
-        <storage loaded-at-startup="true" userPassword="admin" userName="admin" path="plocal:/Users/chris/Development/tomcat/tomcat-CCDA/databases/primary" name="primary"/>
-        <storage loaded-at-startup="true" userPassword="admin" userName="admin" path="plocal:/Users/chris/Development/tomcat/tomcat-CCDA/databases/secondary" name="secondary"/>
+        <storage loaded-at-startup="true" userPassword="admin" userName="admin" path="plocal:E:\\Brian\\Development\\Environment\\databases\\CCDA\\primary" name="primary"/>
+        <storage loaded-at-startup="true" userPassword="admin" userName="admin" path="plocal:E:\\Brian\\Development\\Environment\\databases\\CCDA\\secondary" name="secondary"/>
     </storages>
     <users>
         <user resources="*" password="1C9E93E16EA272C1B6C95AC591CE56E52153AB30C7F08C958475B2016AECA2F5" name="root"/>
@@ -68,5 +68,7 @@
         <entry value="info" name="log.console.level"/>
         <entry value="fine" name="log.file.level"/>
         <entry value="false" name="tx.useLog"/>
+        <!-- <entry value="E:\\Brian\\Development\\Environment\\databases\\CCDA" name="server.database.path"/> -->
+        <entry value="false" name="plugin.dynamic"/>
     </properties>
 </orient-server>
