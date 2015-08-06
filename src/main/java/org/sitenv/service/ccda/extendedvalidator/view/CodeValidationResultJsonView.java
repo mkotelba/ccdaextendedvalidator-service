@@ -2,9 +2,9 @@ package org.sitenv.service.ccda.extendedvalidator.view;
 
 import java.util.List;
 
-public class VocabularyValidationResultJsonView {
+public class CodeValidationResultJsonView {
 	
-	private VocabularyValidationRequestJsonView request;
+	private CodeValidationRequestJsonView request;
 	private Boolean codeExists;
 	private Boolean displayNameExists;
 	private Boolean displayNameMatchForCode;
@@ -37,7 +37,7 @@ public class VocabularyValidationResultJsonView {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		VocabularyValidationResultJsonView other = (VocabularyValidationResultJsonView) obj;
+		CodeValidationResultJsonView other = (CodeValidationResultJsonView) obj;
 		if (codeExists == null) {
 			if (other.codeExists != null)
 				return false;
@@ -61,10 +61,10 @@ public class VocabularyValidationResultJsonView {
 			return false;
 		return true;
 	}
-	public VocabularyValidationRequestJsonView getRequest() {
+	public CodeValidationRequestJsonView getRequest() {
 		return request;
 	}
-	public void setRequest(VocabularyValidationRequestJsonView request) {
+	public void setRequest(CodeValidationRequestJsonView request) {
 		this.request = request;
 	}
 	public Boolean getCodeExists() {

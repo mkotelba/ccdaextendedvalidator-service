@@ -2,7 +2,7 @@ package org.sitenv.service.ccda.extendedvalidator.view;
 
 import java.io.Serializable;
 
-public class VocabularyValidationRequestJsonView implements Serializable{
+public class CodeValidationRequestJsonView implements Serializable{
 
 	private String codeSystem;
 	private String codeSystemName;
@@ -13,14 +13,14 @@ public class VocabularyValidationRequestJsonView implements Serializable{
 	
 	
 	
-	public VocabularyValidationRequestJsonView() {
+	public CodeValidationRequestJsonView() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
 	
 	
-	public VocabularyValidationRequestJsonView(String codeSystem,
+	public CodeValidationRequestJsonView(String codeSystem,
 			String codeSystemName, String code, String displayName) {
 		super();
 		this.codeSystem = codeSystem;
@@ -52,7 +52,7 @@ public class VocabularyValidationRequestJsonView implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		VocabularyValidationRequestJsonView other = (VocabularyValidationRequestJsonView) obj;
+		CodeValidationRequestJsonView other = (CodeValidationRequestJsonView) obj;
 		if (code == null) {
 			if (other.code != null)
 				return false;

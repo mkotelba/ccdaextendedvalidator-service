@@ -7,10 +7,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.sitenv.service.ccda.extendedvalidator.view.VocabularyValidationRequestJsonView;
-import org.sitenv.service.ccda.extendedvalidator.view.VocabularyValidationResultJsonView;
-import org.sitenv.vocabularies.data.DisplayNameValidationResult;
+import org.sitenv.service.ccda.extendedvalidator.view.CodeValidationRequestJsonView;
+import org.sitenv.service.ccda.extendedvalidator.view.CodeValidationResultJsonView;
 import org.sitenv.service.ccda.extendedvalidator.view.ValidationResponse;
+import org.sitenv.service.ccda.extendedvalidator.view.ValueSetValidationRequestJsonView;
+import org.sitenv.service.ccda.extendedvalidator.view.ValueSetValidationResultJsonView;
+import org.sitenv.vocabularies.data.DisplayNameValidationResult;
+import org.sitenv.vocabularies.data.ValueSetValidationResult;
 import org.sitenv.vocabularies.engine.ValidationEngine;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,19 +61,19 @@ public class VocabularyValidationController {
 		return "result: " + ValidationEngine.validateValueSetCodeForCodeSystem(valueSet, code, codeSystem);
 	}
 	
-	@RequestMapping(value="/validateVocabularyList", method= RequestMethod.POST, produces="application/json; charset=utf-8")
-	public @ResponseBody List<VocabularyValidationResultJsonView> validateVocabularyList(@RequestBody List<VocabularyValidationRequestJsonView> list, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	@RequestMapping(value="/validateCodeList", method= RequestMethod.POST, produces="application/json; charset=utf-8")
+	public @ResponseBody List<CodeValidationResultJsonView> validateCodeList(@RequestBody List<CodeValidationRequestJsonView> list, HttpServletRequest request, HttpServletResponse response) throws IOException {
 	
-		List<VocabularyValidationResultJsonView> results = new ArrayList<VocabularyValidationResultJsonView>();
+		List<CodeValidationResultJsonView> results = new ArrayList<CodeValidationResultJsonView>();
 		
 		try
 		{
 	
 			
-			for (VocabularyValidationRequestJsonView vocabRequest : list) 
+			for (CodeValidationRequestJsonView vocabRequest : list) 
 			{
 				
-				VocabularyValidationResultJsonView result = new VocabularyValidationResultJsonView();
+				CodeValidationResultJsonView result = new CodeValidationResultJsonView();
 				
 				result.setRequest(vocabRequest);
 				
@@ -119,4 +122,53 @@ public class VocabularyValidationController {
 
 	}
 
+	
+	@RequestMapping(value="/validateValueSetList", method= RequestMethod.POST, produces="application/json; charset=utf-8")
+	public @ResponseBody List<ValueSetValidationResultJsonView> validateValueSetList(@RequestBody List<ValueSetValidationRequestJsonView> list, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	
+		List<ValueSetValidationResultJsonView> results = new ArrayList<ValueSetValidationResultJsonView>();
+		
+		try
+		{
+	
+			
+			for (ValueSetValidationRequestJsonView vocabRequest : list) 
+			{
+				
+				ValueSetValidationResultJsonView result = new ValueSetValidationResultJsonView();
+				
+				result.setRequest(vocabRequest);
+				
+				ValueSetValidationResult valResult = ValidationEngine.validateValueSetCode(vocabRequest.getValueSet(), vocabRequest.getCodeSystem(), vocabRequest.getCodeSystemName(), vocabRequest.getCode(), vocabRequest.getDisplayName());
+				
+				if (valResult != null)
+				{
+					result.setCodeExistsInCodeSystem(valResult.getCodeExistsInCodeSystem());
+					result.setCodeExistsInValueSet(valResult.getCodeExistsInValueSet());
+					result.setCodeSystemAndNameMatch(valResult.getCodeSystemAndNameMatch());
+					result.setCodeSystemExistsInValueSet(valResult.getCodeSystemExistsInValueSet());
+					result.setDescriptionExistsInCodeSystem(valResult.getDescriptionExistsInCodeSystem());
+					result.setDescriptionExistsInValueSet(valResult.getDescriptionExistsInValueSet());
+					result.setDescriptionMatchesCode(valResult.getDescriptionMatchesCode());
+					result.setExpectedCodesForDescription(valResult.getExpectedCodesForDescription());
+					result.setExpectedCodeSystemNamesForOid(valResult.getExpectedCodeSystemNamesForOid());
+					result.setExpectedCodeSystemsForCode(valResult.getExpectedCodeSystemsForCode());
+					result.setExpectedCodeSystemsForValueSet(valResult.getExpectedCodeSystemsForValueSet());
+					result.setExpectedDescriptionsForCode(valResult.getExpectedDescriptionsForCode());
+					result.setExpectedOidsForCodeSystemName(valResult.getExpectedOidsForCodeSystemName());
+					result.setValueSetNames(valResult.getValueSetNames());
+				}
+				
+				results.add(result);
+			}
+		}
+		catch (Exception e)
+		{
+			response.sendError(500);
+		}
+		return results;
+
+	}
+
+	
 }
