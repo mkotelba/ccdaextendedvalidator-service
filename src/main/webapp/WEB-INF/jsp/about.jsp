@@ -279,6 +279,112 @@ The primary use case of this system includes validating codes of a C-CDA file ag
   				<a href="<%= rootContext %>/validateValueSetCodeForCodeSystem/2.16.840.1.113883.1.11.12212/2.16.840.1.113883.5.2/M"><%= rootContext %>/validateValueSetCodeForCodeSystem/2.16.840.1.113883.1.11.12212/2.16.840.1.113883.5.2/M</a>
   			</p>
 		</div>
+		<div id="validateCodeList" class="page-header">
+  			<h1>Validate Code List</h1>
+		</div>
+		<div id="validateValueSetCodeForCodeSystemPage" class="page">
+  			<p>Validate Code List verifies a list of code/codeSystem/displayName combinations.</p>
+  			
+  			<h2>URL</h2>
+  			<p><%= rootContext %>/validateCodeList </p>			  			
+  			<p>
+  				The webservice request is a list of JSON objects with the following configuration:
+  			</p>
+  				<pre>{
+"code":			&lt;string&gt;		/* The vocabulary code to be validated */
+"displayName":		&lt;string&gt;		/* The display name to be compared with the code */
+"codeSystemName":	&lt;string&gt;		/* The name of the requested code system (OPTIONAL) */
+"codeSystem":		&lt;string&gt;		/* The OID of the requested code system */
+}</pre>
+  			
+  			
+  			<h2>Data Sets</h2>
+  			
+  			<p>
+  				Datasets are loaded from the following GitHub repository:  TBD
+   			</p>
+  			<h2>Validation Response</h2>
+  			<p>	
+  				The web service response is a list of JSON objects with the following configuration:
+  			</p>
+  				<pre>{
+"request":			&lt;instance of the request data&gt;	/* an echo back of the request data */
+"codeExists":			&lt;boolean&gt;	/* denotes that the code exists in the code system */
+"displayNameExists":		&lt;boolean&gt;	/* denotes that the displayName exists in the current code system */
+"displayNameMatchForCode":	&lt;boolean&gt;	/* denotes that the displayName matches the code for the specified code system*/
+"displayNamesForCode":		&lt;string[]&gt;	/* the list of display names that matches the code for the specified code system */
+}</pre>
+  			<p>
+  				Note: Vqlidate Code List validation is case-insensitive.
+  			</p>
+  			<h2>Example Usage</h2>
+  			<p>
+  				curl -i -X POST -H "Content-Type:application/json; charset=utf-8" <%= rootContext %>/CCDAExtendedValidatorService/validateCodeList -d '[{ 
+            "code": "C-D2223",
+            "displayName":"CUTTER PREMISE AND STABLE SPRAY (PRODUCT)",
+            "codeSystemName":"SNOMED-CT",
+            "codeSystem":"2.16.840.1.113883.6.96"
+            }]'  			</p>
+		</div>
+		<div id="validateValueSetList" class="page-header">
+  			<h1>Validate Value Set List</h1>
+		</div>
+		<div id="validateValueSetCodeForCodeSystemPage" class="page">
+  			<p>Validate Value Set List verifies a list of code/codeSystem/displayName/valueSet combinations.</p>
+  			
+  			<h2>URL</h2>
+  			<p><%= rootContext %>/validateValueSetList </p>			  			
+  			<p>
+  				The webservice request is a list of JSON objects with the following configuration:
+  			</p>
+  				<pre>{
+"code":			&lt;string&gt;		/* The vocabulary code to be validated */
+"displayName":		&lt;string&gt;		/* The display name to be compared with the code */
+"codeSystemName":	&lt;string&gt;		/* The name of the requested code system (OPTIONAL) */
+"codeSystem":		&lt;string&gt;		/* The OID of the requested code system */
+"valueSet":		&lt;string&gt;		/* The OID of the requested valueset */
+}</pre>
+  			
+  			
+  			<h2>Data Sets</h2>
+  			
+  			<p>
+  				Datasets are loaded from the following GitHub repository:  TBD
+   			</p>
+  			<h2>Validation Response</h2>
+  			<p>	
+  				The web service response is a list of JSON objects with the following configuration:
+  			</p>
+  				<pre>{
+"request":				&lt;instance of the request data&gt;	/* an echo back of the request data */
+"codeExistsInValueSet":			&lt;boolean&gt;	/* denotes that the code exists in the value set */
+"codeExistsInCodeSystem":		&lt;boolean&gt;	/* denotes that the code exists in the value set/code system combination */
+"descriptionExistsInValueSet":		&lt;boolean&gt;	/* denotes that the description exists in the value set */
+"descriptionExistsInCodeSystem":	&lt;boolean&gt;	/* denotes that the description exists in the value set/code system combination */
+"descriptionMatchesCode":		&lt;boolean&gt;	/* denotes that the description matches the code for the code/value set/code system combination */
+"codeSystemAndNameMatch":		&lt;boolean&gt;	/* denotes that the code System and code System name match */
+"codeSystemExistsInValueSet":		&lt;boolean&gt;	/* denotes that the code system exists in the value set */
+"valueSetNames":			&lt;string[]&gt;	/* possible names for the value set */
+"expectedDescriptionsForCode":		&lt;string[]&gt;	/* list of expected descriptions for the code */
+"expectedCodeSystemNamesForOid":	&lt;string[]&gt;	/* list of code system names for the code system */
+"expectedOidsForCodeSystemName":	&lt;string[]&gt;	/* list of code system oids for the requested code system name */
+"expectedCodesForDescription":		&lt;string[]&gt;	/* list of codes for the requested description */
+"expectedCodeSystemsForCode":		&lt;string[]&gt;	/* list of code systems for the requested code */
+"expectedCodeSystemsForValueSet":	&lt;string[]&gt;	/* list of code systems for the requested value set */
+}</pre>
+  			<p>
+  				Note: Vqlidate Value Set List validation is case-insensitive.
+  			</p>
+  			<h2>Example Usage</h2>
+  			<p>
+  				curl -i -X POST -H "Content-Type:application/json; charset=utf-8" <%= rootContext %>/CCDAExtendedValidatorService/validateValueSetList -d '[{ 
+            "valueSet": "2.16.840.1.114222.4.11.837",
+            "code": "2135-2",
+            "displayName":"Hispanic or Latino",
+            "codeSystemName":"CDCREC",
+            "codeSystem":"2.16.840.1.113883.6.238"
+            }]'  </p>
+		</div>
 	</div>
 	<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
 		<ul class="nav nav-pills nav-stacked">
@@ -290,6 +396,8 @@ The primary use case of this system includes validating codes of a C-CDA file ag
   			<li><a href="#validateNameByCodeSystemName">Validate Display Name By Code System Name</a></li>
   			<li><a href="#validateValueSetCode">Validate Value Set Code</a></li>
   			<li><a href="#validateValueSetCodeForCodeSystem">Validate Value Set Code By Code System</a></li>
+  			<li><a href="#validateCodeList">Validate Code List</a></li>
+  			<li><a href="#validateValueSetList">Validate Value Set List</a></li>
 		</ul>
 		<ul class="nav nav-pills nav-stacked">
 			<li class="page-header"><h1>Project Links</h1></li>
@@ -297,7 +405,6 @@ The primary use case of this system includes validating codes of a C-CDA file ag
 		</ul>
 	</div>
 </div>
-
 
 
 </body>

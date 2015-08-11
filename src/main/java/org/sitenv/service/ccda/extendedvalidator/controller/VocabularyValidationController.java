@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.sitenv.service.ccda.extendedvalidator.view.CodeValidationRequestJsonView;
 import org.sitenv.service.ccda.extendedvalidator.view.CodeValidationResultJsonView;
 import org.sitenv.service.ccda.extendedvalidator.view.ValidationResponse;
@@ -24,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class VocabularyValidationController {
+	
+	private static Logger logger = Logger.getLogger(VocabularyValidationController.class);
 
 	@RequestMapping(value = "/validateCode/{vocabulary}/{code}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public ValidationResponse validateCode(@PathVariable String vocabulary, @PathVariable String code) {
