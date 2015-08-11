@@ -11,7 +11,11 @@ public class CcdaValidatorResultJsonView {
 	private String codeSystemName;
 	private String displayName;
 	private Integer nodeIndex;
+	
+	private String valueSet;
+	
 	private Set<String> expectedValues;
+	private String expectedValuesType;
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -25,9 +29,15 @@ public class CcdaValidatorResultJsonView {
 				+ ((displayName == null) ? 0 : displayName.hashCode());
 		result = prime * result
 				+ ((expectedValues == null) ? 0 : expectedValues.hashCode());
+		result = prime
+				* result
+				+ ((expectedValuesType == null) ? 0 : expectedValuesType
+						.hashCode());
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result
 				+ ((nodeIndex == null) ? 0 : nodeIndex.hashCode());
+		result = prime * result
+				+ ((valueSet == null) ? 0 : valueSet.hashCode());
 		result = prime * result
 				+ ((xpathExpression == null) ? 0 : xpathExpression.hashCode());
 		return result;
@@ -66,6 +76,11 @@ public class CcdaValidatorResultJsonView {
 				return false;
 		} else if (!expectedValues.equals(other.expectedValues))
 			return false;
+		if (expectedValuesType == null) {
+			if (other.expectedValuesType != null)
+				return false;
+		} else if (!expectedValuesType.equals(other.expectedValuesType))
+			return false;
 		if (message == null) {
 			if (other.message != null)
 				return false;
@@ -75,6 +90,11 @@ public class CcdaValidatorResultJsonView {
 			if (other.nodeIndex != null)
 				return false;
 		} else if (!nodeIndex.equals(other.nodeIndex))
+			return false;
+		if (valueSet == null) {
+			if (other.valueSet != null)
+				return false;
+		} else if (!valueSet.equals(other.valueSet))
 			return false;
 		if (xpathExpression == null) {
 			if (other.xpathExpression != null)
@@ -125,19 +145,24 @@ public class CcdaValidatorResultJsonView {
 	public void setNodeIndex(Integer nodeIndex) {
 		this.nodeIndex = nodeIndex;
 	}
+	public String getValueSet() {
+		return valueSet;
+	}
+	public void setValueSet(String valueSet) {
+		this.valueSet = valueSet;
+	}
 	public Set<String> getExpectedValues() {
 		return expectedValues;
 	}
 	public void setExpectedValues(Set<String> expectedValues) {
 		this.expectedValues = expectedValues;
 	}
-	
-	
-	
-	
-	
-	
-	
+	public String getExpectedValuesType() {
+		return expectedValuesType;
+	}
+	public void setExpectedValuesType(String expectedValuesType) {
+		this.expectedValuesType = expectedValuesType;
+	}
 	
 	
 }

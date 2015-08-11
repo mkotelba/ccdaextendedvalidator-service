@@ -91,6 +91,11 @@ public class CcdaExtendedValidatorController {
 									toAdd.setCodeSystemName(convertedResult.getRequestedCodeSystemName());
 									toAdd.setDisplayName(convertedResult.getRequestedDisplayName());
 									toAdd.setExpectedValues(convertedResult.getExpectedValues());
+									if (convertedResult.getExpectedValuesType() != null)
+									{
+										toAdd.setExpectedValuesType(convertedResult.getExpectedValuesType().getValue());
+									}
+									toAdd.setValueSet(convertedResult.getRequestedValueSet());
 								}
 								
 								responseView.getErrorList().add(toAdd);
@@ -111,6 +116,11 @@ public class CcdaExtendedValidatorController {
 									toAdd.setCodeSystemName(convertedResult.getRequestedCodeSystemName());
 									toAdd.setDisplayName(convertedResult.getRequestedDisplayName());
 									toAdd.setExpectedValues(convertedResult.getExpectedValues());
+									if (convertedResult.getExpectedValuesType() != null)
+									{
+										toAdd.setExpectedValuesType(convertedResult.getExpectedValuesType().getValue());
+									}
+									toAdd.setValueSet(convertedResult.getRequestedValueSet());
 								}
 								
 								responseView.getWarningList().add(toAdd);
@@ -133,6 +143,11 @@ public class CcdaExtendedValidatorController {
 									toAdd.setCodeSystemName(convertedResult.getRequestedCodeSystemName());
 									toAdd.setDisplayName(convertedResult.getRequestedDisplayName());
 									toAdd.setExpectedValues(convertedResult.getExpectedValues());
+									if (convertedResult.getExpectedValuesType() != null)
+									{
+										toAdd.setExpectedValuesType(convertedResult.getExpectedValuesType().getValue());
+									}
+									toAdd.setValueSet(convertedResult.getRequestedValueSet());
 								}
 								
 								responseView.getInformationList().add(toAdd);
