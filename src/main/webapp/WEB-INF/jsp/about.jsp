@@ -114,10 +114,10 @@ The primary use case of this system includes validating codes of a C-CDA file ag
   			</p>
   			<h2>Example Usage</h2>
   			<p>
-  				The following example will validate the code value of "C-D2223", from the "2.16.840.1.113883.6.96" vocabulary value set.
+  				The following example will validate the code value of "100238006", from the "2.16.840.1.113883.6.96" vocabulary value set.
   			</p>
   			<p>	
-  				<a href="<%= rootContext %>/validateCode/2.16.840.1.113883.6.96/C-D2223"><%= rootContext %>/validateCode/2.16.840.1.113883.6.96/C-D2223</a>
+  				<a href="<%= rootContext %>/validateCode/2.16.840.1.113883.6.96/100238006"><%= rootContext %>/validateCode/2.16.840.1.113883.6.96/100238006</a>
   			</p>		
 		</div>
 		
@@ -149,10 +149,10 @@ The primary use case of this system includes validating codes of a C-CDA file ag
   			</p>
   			<h2>Example Usage</h2>
   			<p>
-  				The following example will validate the code value of "C-D2223", from the "SNOMED-CT" vocabulary value set.
+  				The following example will validate the code value of "100238006", from the "SNOMED-CT" vocabulary value set.
   			</p>
   			<p>	
-  				<a href="<%= rootContext %>/validateCodeByCodeSystemName/SNOMED-CT/C-D2223"><%= rootContext %>/validateCodeByCodeSystemName/SNOMED-CT/C-D2223</a>
+  				<a href="<%= rootContext %>/validateCodeByCodeSystemName/SNOMED-CT/100238006"><%= rootContext %>/validateCodeByCodeSystemName/SNOMED-CT/100238006</a>
   			</p>		
 		</div>
 
