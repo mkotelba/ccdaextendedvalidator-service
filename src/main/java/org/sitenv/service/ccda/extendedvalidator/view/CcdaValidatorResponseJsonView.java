@@ -1,4 +1,4 @@
-package org.sitenv.service.ccda.extendedvalidator.views;
+package org.sitenv.service.ccda.extendedvalidator.view;
 
 import java.util.ArrayList;
 import java.util.List;

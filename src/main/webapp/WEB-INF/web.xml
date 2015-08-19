@@ -33,6 +33,11 @@
     	<jsp-file>/WEB-INF/jsp/about.jsp</jsp-file>
 	</servlet>
 	
+	<servlet>
+    	<servlet-name>vocabvalidatorui</servlet-name>
+    	<jsp-file>/WEB-INF/jsp/codevalidator.jsp</jsp-file>
+	</servlet>
+	
 	
 
 	<servlet-mapping>
@@ -45,4 +50,9 @@
     	<url-pattern>/About</url-pattern>
 	</servlet-mapping>
 
+	<servlet-mapping>
+    	<servlet-name>vocabvalidatorui</servlet-name>
+    	<url-pattern>/validatorui</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

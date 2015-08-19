@@ -1,14 +1,37 @@
-package org.sitenv.service.ccda.extendedvalidator.views;
+package org.sitenv.service.ccda.extendedvalidator.view;
 
-public class CcdaValidatorResultJsonView {
+import java.io.Serializable;
 
-	private String message;
-	private String code;
-	private String xpathExpression;
+public class ValueSetValidationRequestJsonView implements Serializable{
+
 	private String codeSystem;
 	private String codeSystemName;
+	private String code;
 	private String displayName;
-	private Integer nodeIndex;
+	private String valueSet;
+	
+	
+	
+	
+	
+	public ValueSetValidationRequestJsonView() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	public ValueSetValidationRequestJsonView(String codeSystem,
+			String codeSystemName, String code, String displayName) {
+		super();
+		this.codeSystem = codeSystem;
+		this.codeSystemName = codeSystemName;
+		this.code = code;
+		this.displayName = displayName;
+	}
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -20,13 +43,13 @@ public class CcdaValidatorResultJsonView {
 				+ ((codeSystemName == null) ? 0 : codeSystemName.hashCode());
 		result = prime * result
 				+ ((displayName == null) ? 0 : displayName.hashCode());
-		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result
-				+ ((nodeIndex == null) ? 0 : nodeIndex.hashCode());
-		result = prime * result
-				+ ((xpathExpression == null) ? 0 : xpathExpression.hashCode());
+				+ ((valueSet == null) ? 0 : valueSet.hashCode());
 		return result;
 	}
+
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -35,7 +58,7 @@ public class CcdaValidatorResultJsonView {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CcdaValidatorResultJsonView other = (CcdaValidatorResultJsonView) obj;
+		ValueSetValidationRequestJsonView other = (ValueSetValidationRequestJsonView) obj;
 		if (code == null) {
 			if (other.code != null)
 				return false;
@@ -56,67 +79,76 @@ public class CcdaValidatorResultJsonView {
 				return false;
 		} else if (!displayName.equals(other.displayName))
 			return false;
-		if (message == null) {
-			if (other.message != null)
+		if (valueSet == null) {
+			if (other.valueSet != null)
 				return false;
-		} else if (!message.equals(other.message))
-			return false;
-		if (nodeIndex == null) {
-			if (other.nodeIndex != null)
-				return false;
-		} else if (!nodeIndex.equals(other.nodeIndex))
-			return false;
-		if (xpathExpression == null) {
-			if (other.xpathExpression != null)
-				return false;
-		} else if (!xpathExpression.equals(other.xpathExpression))
+		} else if (!valueSet.equals(other.valueSet))
 			return false;
 		return true;
 	}
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-	public String getXpathExpression() {
-		return xpathExpression;
-	}
-	public void setXpathExpression(String xpathExpression) {
-		this.xpathExpression = xpathExpression;
-	}
+
+
+
 	public String getCodeSystem() {
 		return codeSystem;
 	}
+
+
+
 	public void setCodeSystem(String codeSystem) {
 		this.codeSystem = codeSystem;
 	}
+
+
+
 	public String getCodeSystemName() {
 		return codeSystemName;
 	}
+
+
+
 	public void setCodeSystemName(String codeSystemName) {
 		this.codeSystemName = codeSystemName;
 	}
+
+
+
+	public String getCode() {
+		return code;
+	}
+
+
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+
+
 	public String getDisplayName() {
 		return displayName;
 	}
+
+
+
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
 	}
-	public Integer getNodeIndex() {
-		return nodeIndex;
+
+
+
+	public String getValueSet() {
+		return valueSet;
 	}
-	public void setNodeIndex(Integer nodeIndex) {
-		this.nodeIndex = nodeIndex;
+
+
+
+	public void setValueSet(String valueSet) {
+		this.valueSet = valueSet;
 	}
-	
-	
+
+
+
 	
 	
 	
